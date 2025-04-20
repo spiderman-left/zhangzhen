@@ -3,6 +3,8 @@ import MainLayout from './layout/MainLayout';
 import StudentAspect from './pages/StudentAspect';
 import ExerciseAspect from './pages/ExerciseAspect';
 import RadarChartPage from './pages/RadarChartPage';
+import KnowledgeRadar from './pages/KnowledgeRadar';
+
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
           <Route path="student" element={<StudentAspect />} />
           <Route path="exercise" element={<ExerciseAspect />} />
           <Route path="radar" element={<RadarChartPage />} />
+          <Route path="knowledge" element={<KnowledgeRadar />} />
         </Route>
       </Routes>
     </BrowserRouter>

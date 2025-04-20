@@ -24,6 +24,11 @@ const items = [
     icon: <RadarChartOutlined />,
     label: <Link to="/radar">多框架雷达图</Link>,
   },
+  {
+    key: '/knowledge',
+    icon: <RadarChartOutlined />,
+    label: <Link to="/knowledge">知识点雷达图</Link>,
+  },
 ];
 
 const MainLayout = () => {
