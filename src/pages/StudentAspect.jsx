@@ -1,23 +1,23 @@
-import { useState, useEffect } from 'react';
-import { Checkbox, Select, Spin, message, Tag, Alert } from 'antd';
-import ReactECharts from 'echarts-for-react';
+import { useState, useEffect } from "react";
+import { Checkbox, Select, Spin, message, Tag, Alert } from "antd";
+import ReactECharts from "echarts-for-react";
 
-const models = ['IRT', 'MIRT', 'KSCD', 'NCMD'];
+const models = ["IRT", "MIRT", "KSCD", "NCMD"];
 
-const schools = ['学校A', '学校B', '学校C', '学校D'];
+const schools = ["学校A", "学校B", "学校C", "学校D"];
 
 const frameworkData = {
   origin: {
-    IRT: { acc: 0.800, auc: 0.670, rmse: 0.4393, f: 0.884 },
-    MIRT: { acc: 0.820, auc: 0.718, rmse: 0.372, f: 0.896 },
+    IRT: { acc: 0.8, auc: 0.67, rmse: 0.4393, f: 0.884 },
+    MIRT: { acc: 0.82, auc: 0.718, rmse: 0.372, f: 0.896 },
     KSCD: { acc: 0.831, auc: 0.764, rmse: 0.368, f: 0.901 },
     NCMD: { acc: 0.809, auc: 0.687, rmse: 0.387, f: 0.894 },
   },
   tech: {
     IRT: { acc: 0.847, auc: 0.821, rmse: 0.336, f: 0.912 },
-    MIRT: { acc: 0.845, auc: 0.820, rmse: 0.339, f: 0.912 },
+    MIRT: { acc: 0.845, auc: 0.82, rmse: 0.339, f: 0.912 },
     KSCD: { acc: 0.848, auc: 0.809, rmse: 0.338, f: 0.913 },
-    NCMD: { acc: 0.845, auc: 0.818, rmse: 0.340, f: 0.910 },
+    NCMD: { acc: 0.845, auc: 0.818, rmse: 0.34, f: 0.91 },
   },
   zero: {
     IRT: { acc: 0.854, auc: 0.855, rmse: 0.324, f: 0.917 },
@@ -27,9 +27,9 @@ const frameworkData = {
   },
   cclmf: {
     IRT: { acc: 0.715, auc: 0.775, rmse: 0.427, f: 0.791 },
-    MIRT: { acc: 0.710, auc: 0.767, rmse: 0.434, f: 0.775 },
+    MIRT: { acc: 0.71, auc: 0.767, rmse: 0.434, f: 0.775 },
     KSCD: { acc: 0.719, auc: 0.776, rmse: 0.428, f: 0.796 },
-    NCMD: { acc: 0.800, auc: 0.761, rmse: 0.376, f: 0.877 },
+    NCMD: { acc: 0.8, auc: 0.761, rmse: 0.376, f: 0.877 },
   },
   our: {
     IRT: { acc: 0.867, auc: 0.871, rmse: 0.316, f: 0.922 },
@@ -40,15 +40,14 @@ const frameworkData = {
   ours: {
     IRT: { acc: 0.881, auc: 0.872, rmse: 0.308, f: 0.925 },
     MIRT: { acc: 0.872, auc: 0.886, rmse: 0.311, f: 0.923 },
-    KSCD: { acc: 0.868, auc: 0.880, rmse: 0.310, f: 0.923 },
-    NCMD: { acc: 0.865, auc: 0.878, rmse: 0.319, f: 0.920 },
+    KSCD: { acc: 0.868, auc: 0.88, rmse: 0.31, f: 0.923 },
+    NCMD: { acc: 0.865, auc: 0.878, rmse: 0.319, f: 0.92 },
   },
 };
 
-
 const StudentAspect = () => {
   const [selectedModels, setSelectedModels] = useState(models);
-  const [selectedFramework, setSelectedFramework] = useState('origin');
+  const [selectedFramework, setSelectedFramework] = useState("origin");
   const [updatedData, setUpdatedData] = useState(frameworkData.origin);
   const [loading, setLoading] = useState(false);
 
@@ -75,50 +74,110 @@ const StudentAspect = () => {
 
     return {
       title: {
-        text: 'Student-Aspect CDCD',
-        textStyle: { color: '#fff' },
+        text: "Student-Aspect CDCD",
+        textStyle: { color: "#fff" },
       },
       tooltip: {
-        trigger: 'axis',
+        trigger: "axis",
       },
       legend: {
-        data: ['ACC', 'AUC','rmse','f'],
-        textStyle: { color: '#ccc' },
+        data: ["ACC", "AUC", "rmse", "f"],
+        textStyle: { color: "#ccc" },
       },
       xAxis: {
-        type: 'category',
+        type: "category",
         data: categories,
-        axisLabel: { color: '#fff' },
-        axisLine: { lineStyle: { color: '#888' } },
+        axisLabel: { color: "#fff" },
+        axisLine: { lineStyle: { color: "#888" } },
       },
       yAxis: {
-        type: 'value',
+        type: "value",
         min: 0,
         max: 1,
         interval: 0.1,
-        axisLabel: { color: '#fff' },
-        axisLine: { lineStyle: { color: '#888' } },
-        splitLine: { lineStyle: { color: '#333' } },
+        axisLabel: { color: "#fff" },
+        axisLine: { lineStyle: { color: "#888" } },
+        splitLine: { lineStyle: { color: "#333" } },
       },
       series: [
         {
-          name: 'ACC',
-          type: 'line',
+          name: "ACC",
+          type: "line",
           data: accData,
         },
         {
-          name: 'AUC',
-          type: 'line',
+          name: "AUC",
+          type: "line",
           data: aucData,
         },
         {
-          name: 'rmse',
-          type: 'line',
+          name: "rmse",
+          type: "line",
           data: rmseData,
         },
         {
-          name: 'AUC',
-          type: 'line',
+          name: "f",
+          type: "line",
+          data: fData,
+        },
+      ],
+    };
+  };
+  const getBarOption = () => {
+    const categories = selectedModels;
+    const accData = categories.map((model) => updatedData[model]?.acc ?? 0);
+    const aucData = categories.map((model) => updatedData[model]?.auc ?? 0);
+    const rmseData = categories.map((model) => updatedData[model]?.rmse ?? 0);
+    const fData = categories.map((model) => updatedData[model]?.f ?? 0);
+
+    return {
+      title: {
+        text: "Student-Aspect CDCD (Bar)",
+        textStyle: { color: "#fff" },
+        top: 10,
+      },
+      tooltip: {
+        trigger: "axis",
+        axisPointer: { type: "shadow" },
+      },
+      legend: {
+        data: ["ACC", "AUC", "RMSE", "F"],
+        textStyle: { color: "#ccc" },
+      },
+      xAxis: {
+        type: "category",
+        data: categories,
+        axisLabel: { color: "#fff" },
+        axisLine: { lineStyle: { color: "#888" } },
+      },
+      yAxis: {
+        type: "value",
+        min: 0,
+        max: 1,
+        interval: 0.1,
+        axisLabel: { color: "#fff" },
+        axisLine: { lineStyle: { color: "#888" } },
+        splitLine: { lineStyle: { color: "#333" } },
+      },
+      series: [
+        {
+          name: "ACC",
+          type: "bar",
+          data: accData,
+        },
+        {
+          name: "AUC",
+          type: "bar",
+          data: aucData,
+        },
+        {
+          name: "RMSE",
+          type: "bar",
+          data: rmseData,
+        },
+        {
+          name: "F",
+          type: "bar",
           data: fData,
         },
       ],
@@ -131,7 +190,7 @@ const StudentAspect = () => {
     !sourceSchools.includes(targetSchool);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <div style={{ display: "flex", flexDirection: "row" }}>
       <div style={{ flex: 1 }}>
         <div style={{ marginBottom: 16 }}>
           <Select
@@ -167,7 +226,7 @@ const StudentAspect = () => {
           options={models}
           value={selectedModels}
           onChange={setSelectedModels}
-          style={{ marginBottom: 24, color: '#fff' }}
+          style={{ marginBottom: 24, color: "#fff" }}
         />
 
         <Select
@@ -175,19 +234,28 @@ const StudentAspect = () => {
           onChange={setSelectedFramework}
           style={{ width: 150, marginBottom: 24, marginLeft: 10 }}
           options={[
-            { value: 'origin', label: 'Origin' },
-            { value: 'tech', label: 'Tech' },
-            { value: 'zero', label: 'Zero' },
-            { value: 'cclmf', label: 'CCLMF' },
-            { value: 'our', label: 'Our' },
-            { value: 'ours', label: 'Ours' },
+            { value: "origin", label: "Origin" },
+            { value: "tech", label: "Tech" },
+            { value: "zero", label: "Zero" },
+            { value: "cclmf", label: "CCLMF" },
+            { value: "our", label: "Our" },
+            { value: "ours", label: "Ours" },
           ]}
         />
 
         {loading ? (
-          <Spin size="large" style={{ display: 'block', margin: '24px auto' }} />
+          <Spin
+            size="large"
+            style={{ display: "block", margin: "24px auto" }}
+          />
         ) : showChart ? (
-          <ReactECharts option={getOption()} style={{ height: 400 }} />
+          <>
+            <ReactECharts option={getOption()} style={{ height: 400 }} />
+            <ReactECharts
+              option={getBarOption()}
+              style={{ height: 400, marginTop: 32 }}
+            />
+          </>
         ) : (
           <Alert
             message="请选择 3 个源域学校 和 1 个目标域学校，且不能重复"

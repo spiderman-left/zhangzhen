@@ -69,7 +69,8 @@ const MainLayout = () => {
             borderRadius: 8,
             overflow: 'auto',
             flex: 1,
-            width:'75vw'
+            width:'75vw',
+                maxHeight: 'calc(100vh - 120px)', // 控制内容区域最大高度
           }}
         >
           <Outlet />
